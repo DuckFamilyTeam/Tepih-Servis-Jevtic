@@ -98,6 +98,26 @@ const locations = [
         <span aria-hidden="true">✦</span> U poslu od 2009. godine
       </p>
     </div>
+    <div class="container footer__made-by">
+      <p class="footer__made-by-text">Sajt izradio</p>
+      <a
+        href="https://www.duckfamilyteam.online/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer__made-by-link"
+        aria-label="DuckFamilyTeam - Google Ads Marketing"
+      >
+        <img
+          src="/images/duckfamilyteam-logo.png"
+          alt="DuckFamilyTeam Google Ads Marketing"
+          class="footer__dft-logo"
+          width="120"
+          height="40"
+          loading="lazy"
+        />
+        <span class="footer__dft-name">DuckFamilyTeam</span>
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -297,5 +317,45 @@ const locations = [
     flex-direction: column;
     text-align: center;
   }
+}
+
+/* DuckFamilyTeam credit */
+.footer__made-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 0 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer__made-by-text {
+  font-size: 0.75rem;
+  color: rgba(250, 247, 242, 0.35);
+}
+
+.footer__made-by-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.footer__made-by-link:hover {
+  opacity: 0.8;
+}
+
+.footer__dft-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer__dft-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(250, 247, 242, 0.6);
+  letter-spacing: 0.03em;
 }
 </style>
