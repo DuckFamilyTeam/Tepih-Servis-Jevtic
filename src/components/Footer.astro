@@ -15,11 +15,7 @@ const locations = [
         <!-- Brand col -->
         <div class="footer__brand">
           <div class="footer__logo">
-            <span class="footer__logo-icon" aria-hidden="true">✦</span>
-            <div>
-              <span class="footer__logo-primary">Tepih Servis</span>
-              <span class="footer__logo-secondary">Jevtić</span>
-            </div>
+            <img src="/images/logo.png" alt="Tepih Servis Jevtić" class="footer__logo-img" width="160" height="54" loading="lazy" />
           </div>
           <p class="footer__tagline">
             Profesionalno pranje i čišćenje tepiha u Beogradu od 2009. godine. Besplatno preuzimanje i dostava.
@@ -139,26 +135,13 @@ const locations = [
   margin-bottom: 20px;
 }
 
-.footer__logo-icon {
-  color: var(--gold);
-  font-size: 1.4rem;
-}
-
-.footer__logo-primary {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--ivory);
-}
-
-.footer__logo-secondary {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
+.footer__logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  margin-bottom: 4px;
 }
 
 .footer__tagline {

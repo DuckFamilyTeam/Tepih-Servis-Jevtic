@@ -12,11 +12,7 @@ const navLinks = [
   <div class="navbar__inner container">
     <!-- Logo -->
     <a href="/" class="navbar__logo" aria-label="Tepih Servis Jevtić — početna">
-      <span class="navbar__logo-icon">✦</span>
-      <div class="navbar__logo-text">
-        <span class="navbar__logo-primary">Tepih Servis</span>
-        <span class="navbar__logo-secondary">Jevtić</span>
-      </div>
+      <img src="/images/logo.png" alt="Tepih Servis Jevtić" class="navbar__logo-img" width="180" height="60" />
     </a>
 
     <!-- Desktop nav -->
@@ -96,37 +92,18 @@ const navLinks = [
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   flex-shrink: 0;
 }
 
-.navbar__logo-icon {
-  color: var(--gold);
-  font-size: 1.4rem;
-  line-height: 1;
+.navbar__logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
 }
 
-.navbar__logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.navbar__logo-primary {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--charcoal);
-  letter-spacing: 0.01em;
-}
-
-.navbar__logo-secondary {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
+.navbar__logo-img:hover {
+  opacity: 0.85;
 }
 
 /* Nav links */
