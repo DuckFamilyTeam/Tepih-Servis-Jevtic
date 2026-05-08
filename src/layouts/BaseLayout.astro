@@ -1,0 +1,153 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  schema?: object;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  image = '/og-image.jpg',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const siteName = 'Tepih Servis Jevtić';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+---
+
+<!DOCTYPE html>
+<html lang="sr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="pranje tepiha Beograd, pranje tepiha Borča, tepih servis Borča, dubinsko pranje tepiha, čišćenje tepiha Beograd, pranje tepiha cena, tepih servis Zemun, pranje staza Beograd, tepih servis Novi Beograd" />
+  <meta name="author" content="Tepih Servis Jevtić" />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+  <meta name="theme-color" content="#C9A84C" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={image} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="sr_RS" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fonts with display=swap for performance -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" /></noscript>
+
+  <!-- Structured Data -->
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://tepihservisjevtic.rs/#business",
+    "name": "Tepih Servis Jevtić",
+    "description": "Profesionalno pranje i dubinsko čišćenje tepiha i staza u Beogradu od 2009. godine. Besplatno preuzimanje i vraćanje.",
+    "url": "https://tepihservisjevtic.rs",
+    "telephone": ["+381600425222", "+381638966351"],
+    "email": "autopranje77@gmail.com",
+    "image": "https://tepihservisjevtic.rs/og-image.jpg",
+    "priceRange": "350 din/m²",
+    "foundingDate": "2009",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Borča",
+      "addressLocality": "Beograd",
+      "addressRegion": "Srbija",
+      "postalCode": "11211",
+      "addressCountry": "RS"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "44.8588",
+      "longitude": "20.5073"
+    },
+    "areaServed": [
+      "Borča", "Ovča", "Krnjača", "Padinska Skela", "Kovilovo",
+      "Zemun", "Altina", "Zemun Polje", "Batajnica", "Bežanijska Kosa",
+      "Novi Beograd"
+    ],
+    "serviceType": ["Pranje tepiha", "Dubinsko pranje tepiha", "Suvo čišćenje tepiha", "Pranje staza"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "15:00"
+      }
+    ],
+    "sameAs": ["https://www.instagram.com/autopranje_tepihservisjevtic"]
+  }
+  </script>
+</head>
+<body>
+  <Navbar />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- Scroll reveal script — minimal JS -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+---
+const navLinks = [
+  { href: '/#usluge', label: 'Usluge' },
+  { href: '/#o-nama', label: 'O nama' },
+  { href: '/galerija', label: 'Galerija' },
+  { href: '/#lokacije', label: 'Lokacije' },
+  { href: '/#faq', label: 'FAQ' },
+];
+---
+
+<header class="navbar" id="navbar">
+  <div class="navbar__inner container">
+    <!-- Logo -->
+    <a href="/" class="navbar__logo" aria-label="Tepih Servis Jevtić — početna">
+      <span class="navbar__logo-icon">✦</span>
+      <div class="navbar__logo-text">
+        <span class="navbar__logo-primary">Tepih Servis</span>
+        <span class="navbar__logo-secondary">Jevtić</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="navbar__nav" aria-label="Glavna navigacija">
+      <ul class="navbar__links">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="navbar__link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA -->
+    <a href="tel:+381600425222" class="navbar__cta btn btn--gold" aria-label="Pozovite nas">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+      Pozovite nas
+    </a>
+
+    <!-- Mobile burger -->
+    <button class="navbar__burger" id="navBurger" aria-label="Otvori meni" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" id="mobileMenu" role="dialog" aria-label="Mobilni meni" hidden>
+    <nav>
+      <ul class="navbar__mobile-links">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="navbar__mobile-link">{link.label}</a>
+          </li>
+        ))}
+        <li>
+          <a href="tel:+381600425222" class="navbar__mobile-cta btn btn--gold">
+            Pozovite: +381 60 042 5222
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.navbar.scrolled {
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  box-shadow: 0 4px 40px rgba(26, 24, 20, 0.06);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.navbar__logo-icon {
+  color: var(--gold);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar__logo-primary {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  letter-spacing: 0.01em;
+}
+
+.navbar__logo-secondary {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Nav links */
+.navbar__nav { flex: 1; display: flex; justify-content: center; }
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.navbar__link {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.navbar__link:hover {
+  color: var(--gold);
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+/* CTA */
+.navbar__cta {
+  flex-shrink: 0;
+  padding: 11px 22px;
+  font-size: 0.7rem;
+}
+
+/* Burger */
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--charcoal);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.navbar__burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+.navbar__burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.navbar__burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
+
+/* Mobile menu */
+.navbar__mobile {
+  background: var(--ivory);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 24px var(--container-padding) 32px;
+  animation: slideDown 0.3s ease;
+}
+
+.navbar__mobile[hidden] { display: none; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.navbar__mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navbar__mobile-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ivory-mid);
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.navbar__mobile-link:hover { color: var(--gold); }
+
+.navbar__mobile-cta {
+  margin-top: 16px;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar__nav, .navbar__cta { display: none; }
+  .navbar__burger { display: flex; }
+}
+
+/* When hero is dark, make navbar links white */
+.navbar--hero .navbar__logo-primary,
+.navbar--hero .navbar__link {
+  color: var(--ivory);
+}
+.navbar--hero .navbar__burger span {
+  background: var(--ivory);
+}
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const burger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  // Scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 80) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // Burger toggle
+  burger?.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!isOpen));
+    burger.classList.toggle('active');
+    if (mobileMenu) {
+      if (isOpen) {
+        mobileMenu.hidden = true;
+      } else {
+        mobileMenu.hidden = false;
+      }
+    }
+  });
+
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.hidden = true;
+      burger?.classList.remove('active');
+      burger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

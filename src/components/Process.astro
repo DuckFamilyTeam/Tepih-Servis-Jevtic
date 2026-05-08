@@ -1,0 +1,212 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Pozovite nas',
+    desc: 'Kontaktirajte nas telefonom ili putem Instagrama i dogovorite preuzimanje u vreme koje Vama odgovara.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`,
+  },
+  {
+    num: '02',
+    title: 'Besplatno preuzimamo tepih',
+    desc: 'Naš tim dolazi na Vašu adresu i preuzima tepih. Sve je besplatno — nema skrivenih troškova.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>`,
+  },
+  {
+    num: '03',
+    title: 'Profesionalno čišćenje',
+    desc: 'U našem servisu primenjujemo odgovarajuću metodu pranja — klasično, dubinsko ili suvo čišćenje.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+  },
+  {
+    num: '04',
+    title: 'Dostavljamo na adresu',
+    desc: 'Čist i svež tepih vraćamo na Vašu adresu. Dostava je besplatna, kao i preuzimanje.',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  },
+];
+---
+
+<section class="process section section--dark" id="kako-radimo" aria-labelledby="process-title">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow" style="color: var(--gold-light);">Naš proces</p>
+      <h2 id="process-title" style="color: var(--ivory);">Kako funkcionišemo</h2>
+      <div class="gold-divider gold-divider--center"></div>
+      <p style="color: rgba(250,247,242,0.65);">Jednostavan i pouzdan proces od poziva do čistog tepiha na Vašoj adresi.</p>
+    </div>
+
+    <div class="process__grid">
+      {steps.map((step, i) => (
+        <div class={`process__step reveal reveal-delay-${i + 1}`}>
+          <div class="process__step-num" aria-hidden="true">{step.num}</div>
+          <div class="process__step-icon" aria-hidden="true" set:html={step.icon} />
+          <h3 class="process__step-title">{step.title}</h3>
+          <p class="process__step-desc">{step.desc}</p>
+          {i < steps.length - 1 && (
+            <div class="process__step-arrow" aria-hidden="true">→</div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="process__cta reveal">
+      <p class="process__cta-text">Spremni ste? Zakažite pranje danas.</p>
+      <div class="process__cta-actions">
+        <a href="tel:+381600425222" class="btn btn--gold">
+          Pozovite: +381 60 042 5222
+        </a>
+        <a href="https://www.instagram.com/autopranje_tepihservisjevtic" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+          Pišite na Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.process {
+  position: relative;
+  overflow: hidden;
+}
+
+.process::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+}
+
+.process::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+}
+
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+/* Connector line */
+.process__grid::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.process__step {
+  position: relative;
+  text-align: center;
+  padding: 40px 24px;
+  z-index: 1;
+  transition: background var(--transition-med);
+  border-radius: var(--radius-md);
+}
+
+.process__step:hover {
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.process__step-num {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: rgba(201, 168, 76, 0.15);
+  line-height: 1;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 0;
+}
+
+.process__step-icon {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 50%;
+  color: var(--gold);
+}
+
+.process__step-title {
+  font-size: 1.1rem;
+  color: var(--ivory);
+  margin-bottom: 12px;
+}
+
+.process__step-desc {
+  font-size: 0.88rem;
+  color: rgba(250, 247, 242, 0.55);
+  line-height: 1.75;
+}
+
+.process__step-arrow {
+  position: absolute;
+  top: 48px;
+  right: -14px;
+  color: var(--gold);
+  font-size: 1.2rem;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+/* CTA */
+.process__cta {
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  padding-top: 48px;
+}
+
+.process__cta-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--ivory);
+  margin-bottom: 28px;
+}
+
+.process__cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .process__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .process__grid::before { display: none; }
+  .process__step-arrow { display: none; }
+}
+
+@media (max-width: 480px) {
+  .process__grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

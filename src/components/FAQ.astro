@@ -1,0 +1,222 @@
+---
+const faqs = [
+  {
+    q: 'Kolika je cena pranja tepiha?',
+    a: 'Cena pranja tepiha iznosi 350 dinara po kvadratnom metru. Preuzimanje i dostava su besplatni. Nema skrivenih troškova.',
+  },
+  {
+    q: 'Da li dolazite po tepih?',
+    a: 'Da, besplatno dolazimo na Vašu adresu, preuzimamo tepih i vraćamo ga čist. Usluga preuzimanja i dostave je potpuno besplatna.',
+  },
+  {
+    q: 'Koliko dugo traje pranje tepiha?',
+    a: 'Vreme pranja zavisi od veličine i vrste tepiha, kao i od stepena zaprljanja. Prosečno vreme je 2-4 dana. Obavestićemo Vas o tačnom roku pri preuzimanju.',
+  },
+  {
+    q: 'Da li su sredstva za pranje bezbedna za decu i kućne ljubimce?',
+    a: 'Da, koristimo isključivo profesionalna sredstva koja su bezbedna za ljude, decu i kućne ljubimce. Sredstva su biorazgradiva i ekološki prihvatljiva.',
+  },
+  {
+    q: 'Koje vrste tepiha perete?',
+    a: 'Peremo sve vrste tepiha: ručno tkane, mašinski tkane, svilene, vunene, sintetičke, kao i staze i predprostirače. Za osetljive materijale koristimo metodu suvog čišćenja.',
+  },
+  {
+    q: 'Koje opštine pokrivate?',
+    a: 'Pružamo usluge u Borči, Ovči, Krnjači, Padinskoj Skeli, Kovilovu, Zemunu, Altini, Zemun Polju, Batajnici, Bežanijskoj Kosi i Novom Beogradu.',
+  },
+  {
+    q: 'Kako mogu da zakažem pranje tepiha?',
+    a: 'Možete nas pozvati na +381600425222 ili +381638966351, ili nam pisati putem Instagrama @autopranje_tepihservisjevtic. Dogovorićemo termin koji Vama odgovara.',
+  },
+  {
+    q: 'Da li uklanjate mrlje od kućnih ljubimaca?',
+    a: 'Da, specijalizovani smo za uklanjanje mrlja od kućnih ljubimaca, kao i neprijatnih mirisa. Koristimo enzimska sredstva koja eliminišu uzrok mirisa, ne samo površinski.',
+  },
+];
+---
+
+<section class="faq section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="faq__layout">
+      <div class="faq__header reveal">
+        <p class="eyebrow">Česta pitanja</p>
+        <h2 id="faq-title">Imate pitanja?</h2>
+        <div class="gold-divider"></div>
+        <p>Odgovori na najčešća pitanja o našim uslugama. Niste pronašli odgovor? Pozovite nas!</p>
+        <a href="tel:+381600425222" class="btn btn--gold faq__cta-btn">
+          Pozovite nas
+        </a>
+      </div>
+
+      <div class="faq__items">
+        {faqs.map((faq, i) => (
+          <div class={`faq__item reveal reveal-delay-${(i % 3) + 1}`}>
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-btn-${i}`}
+            >
+              <span>{faq.q}</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div
+              class="faq__answer"
+              id={`faq-answer-${i}`}
+              role="region"
+              aria-labelledby={`faq-btn-${i}`}
+              hidden
+            >
+              <p>{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.faq {
+  background: var(--ivory-dark);
+}
+
+.faq__layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: clamp(48px, 7vw, 100px);
+  align-items: start;
+}
+
+.faq__header {
+  position: sticky;
+  top: 100px;
+}
+
+.faq__header h2 {
+  margin-bottom: 0;
+}
+
+.faq__header p {
+  margin-bottom: 28px;
+}
+
+.faq__cta-btn {
+  width: 100%;
+}
+
+.faq__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq__item {
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+.faq__item:first-child {
+  border-top: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.5;
+  transition: color var(--transition-fast);
+}
+
+.faq__question:hover {
+  color: var(--gold-dark);
+}
+
+.faq__question[aria-expanded="true"] {
+  color: var(--gold-dark);
+}
+
+.faq__icon {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+  line-height: 1;
+}
+
+.faq__question[aria-expanded="true"] .faq__icon {
+  transform: rotate(45deg);
+}
+
+.faq__answer {
+  overflow: hidden;
+}
+
+.faq__answer[hidden] {
+  display: none;
+}
+
+.faq__answer p {
+  padding-bottom: 22px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+  .faq__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faq__header {
+    position: static;
+    text-align: center;
+  }
+
+  .faq__cta-btn {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .gold-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq__question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+
+      // Close all others
+      document.querySelectorAll<HTMLButtonElement>('.faq__question').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+        const id = b.getAttribute('aria-controls');
+        if (id) {
+          const el = document.getElementById(id);
+          if (el) el.hidden = true;
+        }
+      });
+
+      // Toggle current
+      if (!expanded && answer) {
+        btn.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+      }
+    });
+  });
+</script>

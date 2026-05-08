@@ -1,0 +1,175 @@
+---
+const galleryImages = [
+  {
+    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop',
+    alt: 'Profesionalno pranje tepiha — Tepih Servis Jevtić',
+    caption: 'Pranje tepiha',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1527515545081-5db817172677?w=800&q=80&auto=format&fit=crop',
+    alt: 'Dubinsko čišćenje tepiha',
+    caption: 'Dubinsko čišćenje',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80&auto=format&fit=crop',
+    alt: 'Čist i svež tepih nakon pranja',
+    caption: 'Rezultati pranja',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&q=80&auto=format&fit=crop',
+    alt: 'Pranje staza i predprostirača',
+    caption: 'Pranje staza',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80&auto=format&fit=crop',
+    alt: 'Servis tepiha — pre i posle',
+    caption: 'Pre i posle',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&auto=format&fit=crop',
+    alt: 'Profesionalna oprema za pranje tepiha',
+    caption: 'Profesionalna oprema',
+  },
+];
+
+interface Props {
+  preview?: boolean;
+}
+
+const { preview = false } = Astro.props;
+const displayImages = preview ? galleryImages.slice(0, 6) : galleryImages;
+---
+
+<section class="gallery section" id="galerija" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Galerija</p>
+      <h2 id="gallery-title">{preview ? 'Naš rad u slikama' : 'Galerija radova'}</h2>
+      <div class="gold-divider gold-divider--center"></div>
+      <p>Svaki tepih tretiramo s posebnom pažnjom. Pogledajte rezultate našeg rada.</p>
+    </div>
+
+    <div class="gallery__grid">
+      {displayImages.map((img, i) => (
+        <figure class={`gallery__item reveal reveal-delay-${(i % 3) + 1}`}>
+          <div class="gallery__img-wrap">
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+              class="gallery__img"
+            />
+            <div class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__overlay-icon">✦</span>
+            </div>
+          </div>
+          <figcaption class="gallery__caption">{img.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    {preview && (
+      <div class="gallery__more reveal">
+        <a href="/galerija" class="btn btn--outline-dark">
+          Pogledajte celu galeriju →
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+.gallery {
+  background: var(--ivory-dark);
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.gallery__item {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.gallery__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.06);
+}
+
+.gallery__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.35) 0%,
+    rgba(26, 24, 20, 0.3) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-med);
+}
+
+.gallery__item:hover .gallery__overlay {
+  opacity: 1;
+}
+
+.gallery__overlay-icon {
+  color: var(--ivory);
+  font-size: 1.5rem;
+  transform: scale(0.6);
+  transition: transform var(--transition-med);
+}
+
+.gallery__item:hover .gallery__overlay-icon {
+  transform: scale(1);
+}
+
+.gallery__caption {
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: var(--white);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.gallery__more {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

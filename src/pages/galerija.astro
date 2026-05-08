@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import CTABanner from '../components/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Galerija — Tepih Servis Jevtić Borča"
+  description="Pogledajte galeriju naših radova. Profesionalno pranje tepiha i staza u Beogradu — rezultati govore sami za sebe."
+>
+  <div class="gallery-page-hero">
+    <div class="container">
+      <p class="eyebrow">Naši radovi</p>
+      <h1>Galerija</h1>
+      <div class="gold-divider"></div>
+      <p>Profesionalnost koja se vidi. Pogledajte rezultate pranja naših klijenata.</p>
+    </div>
+  </div>
+
+  <Gallery />
+  <CTABanner />
+</BaseLayout>
+
+<style>
+.gallery-page-hero {
+  background: var(--charcoal);
+  padding: clamp(120px, 15vw, 180px) 0 clamp(60px, 8vw, 100px);
+  position: relative;
+  text-align: center;
+}
+
+.gallery-page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
+}
+
+.gallery-page-hero h1 {
+  color: var(--ivory);
+  margin-bottom: 0;
+}
+
+.gallery-page-hero p:last-child {
+  max-width: 480px;
+  margin: 0 auto;
+  color: rgba(250, 247, 242, 0.6);
+}
+
+.gallery-page-hero .gold-divider {
+  margin: 16px auto 16px;
+}
+</style>

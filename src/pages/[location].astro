@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import FAQ from '../../components/FAQ.astro';
+
+export async function getStaticPaths() {
+  const locations = [
+    {
+      slug: 'pranje-tepiha-borca',
+      name: 'Borča',
+      desc: 'Tepih Servis Jevtić pruža usluge profesionalnog pranja tepiha u Borči već od 2009. godine. Naša baza se nalazi upravo u Borči, što nam omogućuje najbrži odziv.',
+      longDesc: 'Kao firma sa sedištem u Borči, Tepih Servis Jevtić je Vaš najbrži i najpouzdaniji izbor za pranje tepiha u ovom delu Beograda. Besplatno dolazimo po tepih i vraćamo ga čist na Vašu adresu.',
+    },
+    {
+      slug: 'pranje-tepiha-ovca',
+      name: 'Ovča',
+      desc: 'Profesionalno pranje tepiha u Ovči sa besplatnim preuzimanjem i dostavom. Cena 350 din/m².',
+      longDesc: 'Servisiramo stanare i firme u Ovči i okolini. Brzo preuzimanje tepiha, profesionalno pranje i dostava na Vašu adresu.',
+    },
+    {
+      slug: 'pranje-tepiha-krnjaca',
+      name: 'Krnjača',
+      desc: 'Tepih servis Krnjača — dubinsko i klasično pranje tepiha. Besplatna dostava.',
+      longDesc: 'Pružamo kompletnu uslugu pranja tepiha u Krnjači — od preuzimanja do dostave. Koristimo profesionalnu opremu i bezbedna sredstva.',
+    },
+    {
+      slug: 'pranje-tepiha-padinska-skela',
+      name: 'Padinska Skela',
+      desc: 'Pranje tepiha Padinska Skela — profesionalno i brzo. Cena 350 din/m², besplatna dostava.',
+      longDesc: 'Servisiramo Padinsku Skelu i okolna naselja. Brzo i profesionalno pranje svih vrsta tepiha sa dostavom na kućnu adresu.',
+    },
+    {
+      slug: 'pranje-tepiha-kovilovo',
+      name: 'Kovilovo',
+      desc: 'Čišćenje tepiha Kovilovo — brzo, profesionalno i povoljno. Tepih Servis Jevtić.',
+      longDesc: 'Pokrivamo Kovilovo i okolinu. Profesionalna oprema, bezbedna sredstva i besplatna dostava čistog tepiha.',
+    },
+    {
+      slug: 'pranje-tepiha-zemun',
+      name: 'Zemun',
+      desc: 'Tepih servis Zemun — profesionalno pranje tepiha sa besplatnim preuzimanjem. 350 din/m².',
+      longDesc: 'Naša ekipa redovno servisira klijente u Zemunu. Brzo preuzimanje, kvalitetno pranje i pouzdana dostava.',
+    },
+    {
+      slug: 'pranje-tepiha-altina',
+      name: 'Altina',
+      desc: 'Pranje tepiha Altina — 350 din/m² sa besplatnom dostavom. Tepih Servis Jevtić Borča.',
+      longDesc: 'Servisiramo Altinu i okolna naselja. Sve vrste tepiha — klasično pranje, dubinsko čišćenje i suvo čišćenje.',
+    },
+    {
+      slug: 'pranje-tepiha-zemun-polje',
+      name: 'Zemun Polje',
+      desc: 'Dubinsko pranje tepiha Zemun Polje. Besplatno preuzimanje i dostava. Cena 350 din/m².',
+      longDesc: 'Pokrivamo Zemun Polje sa redovnim servisiranjem tepiha. Profesionalna oprema, povoljne cene i besplatna logistika.',
+    },
+    {
+      slug: 'pranje-tepiha-batajnica',
+      name: 'Batajnica',
+      desc: 'Tepih servis Batajnica — kvalitetno pranje tepiha sa besplatnom dostavom.',
+      longDesc: 'Servisiramo Batajnicu i okolinu. Iskusni tim, profesionalna oprema i fer cene za sve vrste tepiha.',
+    },
+    {
+      slug: 'pranje-tepiha-bezanijska-kosa',
+      name: 'Bežanijska Kosa',
+      desc: 'Pranje tepiha Bežanijska Kosa — profesionalni tepih servis sa 15+ godina iskustva.',
+      longDesc: 'Pružamo usluge pranja tepiha na Bežanijskoj Kosi. Besplatno preuzimanje i dostava, cena 350 din/m².',
+    },
+    {
+      slug: 'pranje-tepiha-novi-beograd',
+      name: 'Novi Beograd',
+      desc: 'Tepih servis Novi Beograd — brza dostava, profesionalno pranje. 350 din/m².',
+      longDesc: 'Servisiramo sve delove Novog Beograda. Brzo i pouzdano pranje tepiha sa besplatnom dostavom na kućnu adresu.',
+    },
+  ];
+
+  return locations.map((loc) => ({
+    params: { location: loc.slug },
+    props: { ...loc },
+  }));
+}
+
+const { name, desc, longDesc, slug } = Astro.props;
+---
+
+<BaseLayout
+  title={`Pranje Tepiha ${name} — Tepih Servis Jevtić | 350 din/m²`}
+  description={`${desc} Besplatno preuzimanje i dostava. Tepih Servis Jevtić od 2009. godine.`}
+  canonical={`https://tepihservisjevtic.rs/${slug}`}
+>
+  <!-- Location Hero -->
+  <section class="loc-hero">
+    <div class="loc-hero__bg" aria-hidden="true"></div>
+    <div class="container loc-hero__content">
+      <nav class="loc-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Početna</a></li>
+          <li aria-current="page">Pranje tepiha {name}</li>
+        </ol>
+      </nav>
+      <p class="eyebrow" style="color: var(--gold-light);">Lokalna usluga</p>
+      <h1>Pranje tepiha <br /><em>{name}</em></h1>
+      <div class="gold-divider"></div>
+      <p class="loc-hero__desc">{longDesc}</p>
+      <div class="loc-hero__actions">
+        <a href="tel:+381600425222" class="btn btn--gold">Zakažite odmah</a>
+        <a href="/#usluge" class="btn btn--outline">Naše usluge</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local info section -->
+  <section class="loc-info section">
+    <div class="container">
+      <div class="loc-info__grid">
+        <div class="card-luxury loc-info__card">
+          <div class="loc-info__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3>Servis u {name}u</h3>
+          <p>Pokrivamo {name} i okolinu. Besplatno dolazimo po Vaš tepih i vraćamo ga čist.</p>
+        </div>
+        <div class="card-luxury loc-info__card">
+          <div class="loc-info__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>Brza usluga</h3>
+          <p>Dogovaramo termin koji Vama odgovara. Prosečno vreme pranja je 2-4 dana.</p>
+        </div>
+        <div class="card-luxury loc-info__card">
+          <div class="loc-info__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3>Garantovano zadovoljstvo</h3>
+          <p>15+ godina iskustva, profesionalna oprema i bezbedna sredstva za pranje.</p>
+        </div>
+      </div>
+
+      <!-- Price info -->
+      <div class="loc-price reveal">
+        <div class="loc-price__box">
+          <h2>Cena pranja tepiha u {name}u</h2>
+          <div class="loc-price__grid">
+            <div class="loc-price__item">
+              <span class="loc-price__amount">350 din</span>
+              <span class="loc-price__unit">po m²</span>
+              <span class="loc-price__label">Pranje tepiha</span>
+            </div>
+            <div class="loc-price__item">
+              <span class="loc-price__amount">Besplatno</span>
+              <span class="loc-price__unit"> </span>
+              <span class="loc-price__label">Preuzimanje i dostava</span>
+            </div>
+            <div class="loc-price__item">
+              <span class="loc-price__amount">15+</span>
+              <span class="loc-price__unit">godina</span>
+              <span class="loc-price__label">Iskustvo</span>
+            </div>
+          </div>
+          <a href="tel:+381600425222" class="btn btn--gold">
+            Pozovite: +381 60 042 5222
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `Pranje tepiha ${name}`,
+    "description": longDesc,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Tepih Servis Jevtić",
+      "telephone": "+381600425222",
+      "url": "https://tepihservisjevtic.rs"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": name
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "350",
+      "priceCurrency": "RSD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "350",
+        "priceCurrency": "RSD",
+        "unitCode": "MTK"
+      }
+    }
+  })} />
+
+  <CTABanner />
+</BaseLayout>
+
+<style>
+/* Location Hero */
+.loc-hero {
+  background: var(--charcoal);
+  padding: clamp(120px, 15vw, 180px) 0 clamp(60px, 8vw, 100px);
+  position: relative;
+  overflow: hidden;
+}
+
+.loc-hero__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
+}
+
+.loc-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.loc-breadcrumb {
+  margin-bottom: 24px;
+}
+
+.loc-breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.loc-breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(250, 247, 242, 0.4);
+}
+
+.loc-breadcrumb li:not(:last-child)::after {
+  content: '→';
+  font-size: 0.65rem;
+}
+
+.loc-breadcrumb a {
+  color: rgba(201, 168, 76, 0.7);
+  transition: color 0.2s;
+}
+
+.loc-breadcrumb a:hover { color: var(--gold); }
+
+.loc-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  color: var(--ivory);
+  margin-bottom: 0;
+}
+
+.loc-hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.loc-hero .gold-divider { margin-top: 16px; }
+
+.loc-hero__desc {
+  max-width: 560px;
+  color: rgba(250, 247, 242, 0.65);
+  margin-bottom: 36px;
+  font-size: 1rem;
+}
+
+.loc-hero__actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Info grid */
+.loc-info {
+  background: var(--ivory);
+}
+
+.loc-info__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.loc-info__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold-subtle);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.loc-info__card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+/* Price */
+.loc-price__box {
+  background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
+  border-radius: var(--radius-lg);
+  padding: clamp(40px, 5vw, 64px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.loc-price__box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.loc-price__box h2 {
+  color: var(--ivory);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 40px;
+}
+
+.loc-price__grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.loc-price__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.loc-price__amount {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.loc-price__unit {
+  font-size: 0.8rem;
+  color: var(--gold);
+  min-height: 1.2em;
+}
+
+.loc-price__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 247, 242, 0.45);
+}
+
+@media (max-width: 768px) {
+  .loc-info__grid {
+    grid-template-columns: 1fr;
+  }
+  .loc-price__grid {
+    gap: 32px;
+  }
+}
+</style>

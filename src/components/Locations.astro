@@ -1,0 +1,205 @@
+---
+const locations = [
+  { name: 'Borča', slug: 'pranje-tepiha-borca', desc: 'Brza usluga pranja tepiha u Borči i okolini.' },
+  { name: 'Ovča', slug: 'pranje-tepiha-ovca', desc: 'Profesionalno pranje tepiha u Ovči.' },
+  { name: 'Krnjača', slug: 'pranje-tepiha-krnjaca', desc: 'Tepih servis Krnjača — brzo i kvalitetno.' },
+  { name: 'Padinska Skela', slug: 'pranje-tepiha-padinska-skela', desc: 'Pranje tepiha Padinska Skela sa besplatnom dostavom.' },
+  { name: 'Kovilovo', slug: 'pranje-tepiha-kovilovo', desc: 'Čišćenje tepiha Kovilovo — brzo i efikasno.' },
+  { name: 'Zemun', slug: 'pranje-tepiha-zemun', desc: 'Tepih servis Zemun — besplatno preuzimanje.' },
+  { name: 'Altina', slug: 'pranje-tepiha-altina', desc: 'Pranje tepiha Altina — 350 din/m².' },
+  { name: 'Zemun Polje', slug: 'pranje-tepiha-zemun-polje', desc: 'Dubinsko pranje tepiha Zemun Polje.' },
+  { name: 'Batajnica', slug: 'pranje-tepiha-batajnica', desc: 'Tepih servis Batajnica — kvalitetna usluga.' },
+  { name: 'Bežanijska Kosa', slug: 'pranje-tepiha-bezanijska-kosa', desc: 'Pranje tepiha Bežanijska Kosa.' },
+  { name: 'Novi Beograd', slug: 'pranje-tepiha-novi-beograd', desc: 'Tepih servis Novi Beograd — brza dostava.' },
+];
+---
+
+<section class="locations section" id="lokacije" aria-labelledby="locations-title">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Zona pokrivenosti</p>
+      <h2 id="locations-title">Servisiramo ceo Beograd</h2>
+      <div class="gold-divider gold-divider--center"></div>
+      <p>Pranje tepiha sa besplatnim preuzimanjem i dostavom na svim navedenim lokacijama. Jedna cena — 350 din/m².</p>
+    </div>
+
+    <div class="locations__grid">
+      {locations.map((loc, i) => (
+        <a
+          href={`/${loc.slug}`}
+          class={`locations__card reveal reveal-delay-${(i % 5) + 1}`}
+          aria-label={`Pranje tepiha ${loc.name}`}
+        >
+          <div class="locations__card-inner">
+            <span class="locations__icon" aria-hidden="true">✦</span>
+            <h3 class="locations__city">{loc.name}</h3>
+            <p class="locations__desc">{loc.desc}</p>
+            <span class="locations__cta">Saznajte više →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Map CTA -->
+    <div class="locations__map-cta reveal">
+      <div class="locations__map-box">
+        <div class="locations__map-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <div class="locations__map-text">
+          <h3>Niste sigurni da li pokrivamo Vaše područje?</h3>
+          <p>Pozovite nas — radimo na celoj teritoriji Beograda i okolini.</p>
+        </div>
+        <a href="tel:+381600425222" class="btn btn--gold">Pozovite nas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.locations {
+  background: var(--ivory);
+}
+
+.locations__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.locations__card {
+  display: block;
+  background: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  transition: all var(--transition-med);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.locations__card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-med);
+}
+
+.locations__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-deep);
+  border-color: rgba(201, 168, 76, 0.25);
+}
+
+.locations__card:hover::before {
+  transform: scaleX(1);
+}
+
+.locations__card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.locations__icon {
+  color: var(--gold);
+  font-size: 0.6rem;
+  margin-bottom: 4px;
+}
+
+.locations__city {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.2;
+}
+
+.locations__desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.locations__cta {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 8px;
+  transition: gap var(--transition-fast);
+}
+
+/* Map CTA */
+.locations__map-box {
+  background: linear-gradient(135deg, var(--ivory-dark) 0%, var(--champagne-light) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.locations__map-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold-subtle);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 50%;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.locations__map-text {
+  flex: 1;
+}
+
+.locations__map-text h3 {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin-bottom: 8px;
+}
+
+.locations__map-text p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .locations__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .locations__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .locations__map-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .locations__grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

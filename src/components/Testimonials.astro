@@ -1,0 +1,207 @@
+---
+const testimonials = [
+  {
+    name: 'Milica Stojanović',
+    location: 'Zemun',
+    text: 'Odlična usluga! Moj tepih je opet kao nov. Brzo preuzimanje i dostava, ljubazni i profesionalni. Svaka preporuka!',
+    rating: 5,
+    initials: 'MS',
+  },
+  {
+    name: 'Aleksandar Perić',
+    location: 'Novi Beograd',
+    text: 'Koristim usluge Tepih Servisa Jevtić već 5 godina. Uvek zadovoljan rezultatom. Preporučujem svima!',
+    rating: 5,
+    initials: 'AP',
+  },
+  {
+    name: 'Jelena Nikolić',
+    location: 'Borča',
+    text: 'Deca i kućni ljubimci su mi razlog zašto redovno perem tepih kod njih. Sredstva su bezbedna i tepih miriše prelepo.',
+    rating: 5,
+    initials: 'JN',
+  },
+  {
+    name: 'Dragan Marković',
+    location: 'Batajnica',
+    text: 'Cena je fer, kvalitet odličan. Dolaze na vreme, odnose i vraćaju bez komplikacija. Više ništa ne čistim sam.',
+    rating: 5,
+    initials: 'DM',
+  },
+  {
+    name: 'Ana Đorđević',
+    location: 'Bežanijska Kosa',
+    text: 'Tepih je bio jako prljav nakon renoviranja. Posle pranja — kao da smo ga tek kupili! Preporučujem svima.',
+    rating: 5,
+    initials: 'AĐ',
+  },
+  {
+    name: 'Nebojša Ilić',
+    location: 'Krnjača',
+    text: 'Pedantni, tačni i jeftini. Za ovu cenu i ovu uslugu nema boljeg servisa u Beogradu.',
+    rating: 5,
+    initials: 'NI',
+  },
+];
+---
+
+<section class="testimonials section section--ivory-mid" id="utisci" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Zadovoljni klijenti</p>
+      <h2 id="testimonials-title">Šta kažu naši klijenti</h2>
+      <div class="gold-divider gold-divider--center"></div>
+      <p>Više od 15 godina gradimo poverenje kroz kvalitet i profesionalizam.</p>
+    </div>
+
+    <div class="testimonials__grid">
+      {testimonials.map((t, i) => (
+        <article class={`testimonials__card reveal reveal-delay-${(i % 3) + 1}`} aria-label={`Utisak — ${t.name}`}>
+          <!-- Stars -->
+          <div class="testimonials__stars" aria-label={`Ocena: ${t.rating} od 5`}>
+            {Array.from({ length: t.rating }, () => (
+              <span class="testimonials__star" aria-hidden="true">★</span>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="testimonials__quote">
+            <p>"{t.text}"</p>
+          </blockquote>
+
+          <!-- Author -->
+          <div class="testimonials__author">
+            <div class="testimonials__avatar" aria-hidden="true">{t.initials}</div>
+            <div>
+              <strong class="testimonials__name">{t.name}</strong>
+              <span class="testimonials__loc">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                {t.location}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.testimonials__card {
+  background: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-med);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials__card::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(201, 168, 76, 0.07);
+  pointer-events: none;
+}
+
+.testimonials__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-deep), var(--shadow-gold);
+  border-color: rgba(201, 168, 76, 0.25);
+}
+
+.testimonials__stars {
+  display: flex;
+  gap: 3px;
+}
+
+.testimonials__star {
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.testimonials__quote {
+  flex: 1;
+}
+
+.testimonials__quote p {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--charcoal-soft);
+  line-height: 1.75;
+}
+
+.testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--ivory-mid);
+  padding-top: 16px;
+}
+
+.testimonials__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--ivory);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.testimonials__name {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 3px;
+}
+
+.testimonials__loc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .testimonials__grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+  }
+}
+</style>

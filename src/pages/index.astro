@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import Process from '../components/Process.astro';
+import Gallery from '../components/Gallery.astro';
+import Locations from '../components/Locations.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Pranje Tepiha Beograd — Tepih Servis Jevtić | 350 din/m² + Besplatna Dostava"
+  description="Profesionalno pranje i dubinsko čišćenje tepiha u Beogradu od 2009. godine. Cena 350 din/m². Besplatno preuzimanje i dostava. Pokrivamo Borču, Zemun, Novi Beograd i okolinu."
+>
+  <Hero />
+  <Services />
+  <About />
+  <Process />
+  <Gallery preview={true} />
+  <Locations />
+  <Testimonials />
+  <FAQ />
+  <CTABanner />
+</BaseLayout>
