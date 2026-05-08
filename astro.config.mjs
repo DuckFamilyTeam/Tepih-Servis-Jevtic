@@ -5,8 +5,5 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
-  image: {
-    domains: ['images.unsplash.com'],
-  },
   compressHTML: true,
 });
